@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yash Jadhav — 3D Game Designer</title>
+  <meta name="description" content="Portfolio of Yash Jadhav, 3D Game Designer and Unreal Engine environment artist." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%230a0d12'/><text x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='%23e2a44c' text-anchor='middle'>YJ</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="nav" id="nav">
+    <nav class="nav__links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#showreel" data-showreel>Showreel</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--small btn--outline nav__cta" id="resumeBtn" href="#" download hidden>Resume</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Open menu"><span></span><span></span></button>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero__media" id="heroMedia"><video id="heroVideo" muted playsinline autoplay preload="auto"></video></div>
+    <div class="hero__shade"></div>
+    <div class="container hero__inner">
+      <p class="eyebrow" data-bind="tagline"></p>
+      <h1 class="hero__name" data-bind="name"></h1>
+      <p class="hero__role" data-bind="role"></p>
+      <p class="hero__intro" data-bind="intro"></p>
+      <div class="hero__actions">
+        <a href="#work" class="btn btn--solid">View Work</a>
+        <a href="#showreel" class="btn btn--outline" data-showreel>Watch Showreel</a>
+      </div>
+    </div>
+    <div class="container hero__meta">
+      <span data-bind="location"></span>
+      <span class="hero__status"><i></i><span data-bind="availability"></span></span>
+    </div>
+  </section>
+
+  <main>
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__num">01</span>
+          <h2 class="section__title">About Me</h2>
+        </div>
+        <div class="about">
+          <div class="about__photo"><img id="photo" alt="" /></div>
+          <div class="about__text" id="aboutText"></div>
+          <aside class="about__facts">
+            <div class="fact"><span class="fact__label">Role</span><span class="fact__value" data-bind="role"></span></div>
+            <div class="fact"><span class="fact__label">Experience</span><span class="fact__value" id="expFact"></span></div>
+            <div class="fact"><span class="fact__label">Based in</span><span class="fact__value" data-bind="location"></span></div>
+            <div class="fact"><span class="fact__label">Languages</span><span class="fact__value" id="languages"></span></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section class="section" id="work">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__num">02</span>
+          <h2 class="section__title">Explore My Works</h2>
+        </div>
+        <div class="workbar">
+          <div class="tabs" id="tabs" role="tablist"></div>
+          <button class="reel-btn" data-showreel><span class="reel-btn__icon"></span>Watch Showreel</button>
+        </div>
+        <div id="workGroups"></div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section section--alt" id="experience">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__num">03</span>
+          <h2 class="section__title">Professional Experience</h2>
+        </div>
+        <div class="timeline" id="experienceList"></div>
+      </div>
+    </section>
+
+    <!-- SKILLS + EDUCATION -->
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__num">04</span>
+          <h2 class="section__title">Skills &amp; Education</h2>
+        </div>
+        <div class="skillwrap">
+          <div>
+            <h3 class="sub">Software <em>— hover to see what I do in each</em></h3>
+            <ul class="skills" id="skillsList"></ul>
+          </div>
+          <aside class="skillpanel" id="skillPanel" aria-live="polite"></aside>
+        </div>
+        <h3 class="sub sub--gap">Education</h3>
+        <ul class="edu" id="eduList"></ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section--contact" id="contact">
+      <div class="container">
+        <div class="section__head">
+          <span class="section__num">05</span>
+          <h2 class="section__title">Contact</h2>
+        </div>
+        <div class="contact">
+          <div class="contact__info">
+            <h3 class="contact__heading">Let's build something together.</h3>
+            <p class="contact__lead">Have a project, a role or a world that needs building? Send a message or reach me directly.</p>
+            <ul class="contact__list">
+              <li>
+                <span class="contact__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="m4 7 8 6 8-6"/></svg></span>
+                <div><span class="fact__label">Email</span><a id="email"></a></div>
+              </li>
+              <li>
+                <span class="contact__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a1 1 0 0 1-1 1A16 16 0 0 1 4 5a1 1 0 0 1 1-1"/></svg></span>
+                <div><span class="fact__label">Phone</span><div id="phones"></div></div>
+              </li>
+              <li>
+                <span class="contact__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+                <div><span class="fact__label">Address</span><p data-bind="contact.address"></p></div>
+              </li>
+            </ul>
+          </div>
+
+          <form class="cform" id="contactForm" method="POST" enctype="multipart/form-data" target="fsFrame" novalidate>
+            <h3 class="cform__title">Contact Me</h3>
+            <div class="cform__row">
+              <label class="field"><span>Your Name</span><input type="text" name="name" placeholder="John Doe" required /></label>
+              <label class="field"><span>Your Email</span><input type="email" name="email" placeholder="you@example.com" required /></label>
+            </div>
+            <label class="field"><span>Subject</span><input type="text" name="_subject" placeholder="Project, job offer, collaboration…" /></label>
+            <label class="field"><span>Your Message</span><textarea name="message" rows="5" placeholder="Tell me about your project…" required></textarea></label>
+            <label class="drop" id="drop">
+              <input type="file" name="attachment" id="fileInput" />
+              <span class="drop__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 12.5 12.6 21a5.5 5.5 0 0 1-7.8-7.8l8.5-8.5a3.7 3.7 0 0 1 5.2 5.2l-8.5 8.5a1.8 1.8 0 0 1-2.6-2.6L15.2 8"/></svg></span>
+              <span class="drop__text" id="dropText"><strong>Attach a file</strong> or drag it here <small>PDF, image, ZIP · max 10 MB</small></span>
+              <button type="button" class="drop__clear" id="fileClear" hidden aria-label="Remove file">&times;</button>
+            </label>
+            <input type="text" name="_honey" class="cform__hp" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <button type="submit" class="btn btn--solid cform__send" id="sendBtn">Send Message
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12 20 4l-6 16-3-7z"/><path d="m11 13 9-9"/></svg>
+            </button>
+            <p class="cform__status" id="formStatus" role="status"></p>
+          </form>
+          <iframe name="fsFrame" id="fsFrame" title="" hidden></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span>&copy; <span id="year"></span> <span data-bind="name"></span></span>
+      <a href="#top">Back to top &uarr;</a>
+    </div>
+  </footer>
+
+  <!-- WORK VIEWER -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__box" role="dialog" aria-modal="true" id="modalBox">
+      <button class="modal__close" data-close aria-label="Close">&times;</button>
+      <div class="modal__media" id="modalMedia"></div>
+      <div class="modal__body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+  <script src="fx.js"></script>
+</body>
+</html>
