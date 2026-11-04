@@ -13,10 +13,10 @@
   document.title = `${S.name} — ${S.role}`;
   $("#year").textContent = new Date().getFullYear();
   if (!S.availability) $(".hero__status").hidden = true;
+  if (!S.tagline) $(".hero .eyebrow").hidden = true;
+  $("#heroTitle").innerHTML = String(S.heroTitle || S.role || "").split("|").map((t) => t.trim()).filter(Boolean)
+    .map((t) => `<span>${esc(t)}</span>`).join('<i aria-hidden="true"></i>');
   if (S.resumeFile) { const r = $("#resumeBtn"); r.href = S.resumeFile; r.hidden = false; }
-  const job = (S.experience || [])[0];
-  if (job) $("#expFact").textContent = `${job.title}, ${job.company}${job.current ? " · Present" : ` · ${job.period}`}`;
-  else $("#expFact").parentElement.hidden = true;
 
   /* ---------------- hero background videos (play one after another) ---------------- */
   const heroList = (S.heroVideos || []).filter(Boolean);
@@ -48,7 +48,7 @@
   /* ---------------- about ---------------- */
   const photo = $("#photo"); photo.src = S.photo; photo.alt = S.name;
   $("#aboutText").innerHTML = (S.about || []).map((p) => `<p>${esc(p)}</p>`).join("");
-  $("#languages").textContent = (S.languages || []).join(", ");
+  $("#aboutFacts").innerHTML = (S.aboutFacts || []).map((f) => `<div class="fact"><dt class="fact__label">${esc(f.label)}</dt><dd class="fact__value">${esc(f.value)}</dd></div>`).join("");
 
   /* ---------------- experience ---------------- */
   $("#experienceList").innerHTML = (S.experience || []).map((j) => `
@@ -181,6 +181,18 @@
   const cats = S.workCategories || [];
   let active = "all";
 
+  /* "Play Game" block for games: button + optional password chip */
+  const gamepad = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8h10a5 5 0 0 1 4.9 6l-.6 3a2.5 2.5 0 0 1-4.3 1.2L15 16H9l-2 2.2A2.5 2.5 0 0 1 2.7 17l-.6-3A5 5 0 0 1 7 8z"/><path d="M7.5 11v3M6 12.5h3"/><circle cx="16" cy="11.5" r=".6"/><circle cx="17.8" cy="13.4" r=".6"/></svg>';
+  function playBlock(w) {
+    if (!w.playLink) return "";
+    const lock = '<svg class="note__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+    const pass = w.password ? `<p class="work__note">${lock}<span>If itch.io asks for a password, enter: ${esc(w.password)}</span></p>` : "";
+    return `
+      <div class="play">
+        <a class="play__btn" href="${esc(w.playLink)}" target="_blank" rel="noopener">${gamepad}<span>Play Game</span></a>${pass}
+      </div>`;
+  }
+
   function card(w, i) {
     const cover = w.thumbnail || (w.images || [])[0] || "";
     const thumb = cover
@@ -189,8 +201,7 @@
     let badge = "";
     if (w.video) badge = '<span class="work__play" aria-hidden="true"></span>';
     else if ((w.images || []).length > 1) badge = `<span class="work__count">${w.images.length} renders</span>`;
-    const play = w.playLink
-      ? `<a class="btn btn--solid btn--small work__playlink" href="${esc(w.playLink)}" target="_blank" rel="noopener">Play Game &nearr;</a>` : "";
+    const play = playBlock(w);
     return `
       <article class="work" data-i="${i}" tabindex="0">
         <div class="work__thumb">${thumb}${badge}</div>
@@ -268,7 +279,7 @@
       ${w.description ? `<p>${esc(w.description)}</p>` : ""}
       ${(w.tools || []).length ? `<div class="tags">${w.tools.map((t) => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
       <div class="modal__actions">
-        ${w.playLink ? `<a class="btn btn--solid" href="${esc(w.playLink)}" target="_blank" rel="noopener">Play Game &nearr;</a>` : ""}
+        ${playBlock(w)}
         ${w.link ? `<a class="modal__link" href="${esc(w.link)}" target="_blank" rel="noopener">View project &nearr;</a>` : ""}
       </div>`;
     let media = "";
@@ -282,7 +293,7 @@
     const r = S.showreel || {};
     open(
       r.vimeoId ? `<iframe src="https://player.vimeo.com/video/${esc(r.vimeoId)}?autoplay=1&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>` : videoHTML(r.url),
-      `<h3>Showreel</h3><span class="work__meta">${esc(S.name)} · ${esc(S.tagline)}</span>
+      `<h3>Showreel</h3><span class="work__meta">${esc(S.name)} · ${esc(S.role)}</span>
        ${r.url ? `<div class="modal__actions"><a class="modal__link" href="${esc(r.url)}" target="_blank" rel="noopener">Watch on Vimeo &nearr;</a></div>` : ""}`
     );
   }
@@ -293,7 +304,7 @@
   }
 
   $("#workGroups").addEventListener("click", (e) => {
-    if (e.target.closest(".work__playlink")) return; // let the Play link open directly
+    if (e.target.closest(".play__btn")) return; // let the Play link open directly
     const c = e.target.closest(".work"); if (c) openWork(+c.dataset.i);
   });
   $("#workGroups").addEventListener("keydown", (e) => { const c = e.target.closest(".work"); if (c && e.key === "Enter") openWork(+c.dataset.i); });

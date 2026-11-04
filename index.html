@@ -34,7 +34,7 @@
     <div class="container hero__inner">
       <p class="eyebrow" data-bind="tagline"></p>
       <h1 class="hero__name" data-bind="name"></h1>
-      <p class="hero__role" data-bind="role"></p>
+      <p class="hero__role" id="heroTitle"></p>
       <p class="hero__intro" data-bind="intro"></p>
       <div class="hero__actions">
         <a href="#work" class="btn btn--solid">View Work</a>
@@ -57,14 +57,13 @@
         </div>
         <div class="about">
           <div class="about__photo"><img id="photo" alt="" /></div>
-          <div class="about__text" id="aboutText"></div>
-          <aside class="about__facts">
-            <div class="fact"><span class="fact__label">Role</span><span class="fact__value" data-bind="role"></span></div>
-            <div class="fact"><span class="fact__label">Experience</span><span class="fact__value" id="expFact"></span></div>
-            <div class="fact"><span class="fact__label">Based in</span><span class="fact__value" data-bind="location"></span></div>
-            <div class="fact"><span class="fact__label">Languages</span><span class="fact__value" id="languages"></span></div>
-          </aside>
+          <div class="about__body">
+            <div class="about__text" id="aboutText"></div>
+            <dl class="about__facts" id="aboutFacts"></dl>
+          </div>
         </div>
+        <h3 class="sub sub--edu">Education</h3>
+        <ul class="edu" id="eduList"></ul>
       </div>
     </section>
 
@@ -99,7 +98,7 @@
       <div class="container">
         <div class="section__head">
           <span class="section__num">04</span>
-          <h2 class="section__title">Skills &amp; Education</h2>
+          <h2 class="section__title">Skills</h2>
         </div>
         <div class="skillwrap">
           <div>
@@ -108,8 +107,6 @@
           </div>
           <aside class="skillpanel" id="skillPanel" aria-live="polite"></aside>
         </div>
-        <h3 class="sub sub--gap">Education</h3>
-        <ul class="edu" id="eduList"></ul>
       </div>
     </section>
 

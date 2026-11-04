@@ -10,12 +10,14 @@
 const SITE = {
   name: "Yash Jadhav",
   role: "3D Game Designer",
-  tagline: "3D | Unreal | Modeling Artist",
+  tagline: "", // hero madhe naavachya var chhoti line — rikami thevli tar disat nahi
+  // Hero (pahili screen) madhe naavakhali disnari roles — "|" ne vegle kara
+  heroTitle: "Unreal Engine Artist | 3D Environment Artist | 3D Artist | Game Designer",
   intro:
-    "3D Artist focused on Unreal Engine — cinematic landscapes, lighting, world-building and real-time rendering.",
+    "Creating immersive 3D worlds, detailed environments, cinematic visuals and interactive experiences through creativity, design and real-time technology.",
   photo: "assets/profile.jpg",
   resumeFile: "", // e.g. "assets/Yash_Jadhav_Resume.pdf" — leave empty to hide the button
-  location: "Nashik, Maharashtra",
+  location: "Bengaluru, Karnataka",
   availability: "Game Designer at AppsNDevices Pvt. Ltd.", // leave empty to hide
 
   /* Top (hero) background madhe he videos ek-nantar-ek play hotat (muted).
@@ -26,9 +28,18 @@ const SITE = {
     "assets/hero/republic-day-campus.mp4",
   ],
 
+  /* About Me — pahila paragraph motha (intro) disto */
   about: [
-    "I am a 3D Artist focused entirely on Unreal Engine, specializing in cinematic landscapes, lighting, world-building, and real-time rendering. My work centers on creating high-quality, immersive environments with strong visual storytelling.",
-    "I prioritize clean workflows, optimization, and achieving a cinematic look through lighting, atmosphere, and composition. I continuously explore new techniques in Unreal Engine to push the quality and realism of my scenes.",
+    "Hi, I'm Yash Jadhav, a 3D Artist and Game Designer passionate about creating immersive 3D environments and visually engaging experiences using Unreal Engine.",
+    "My work focuses on 3D modeling, environment design, texturing, materials, lighting, level design, and real-time visualization. I enjoy transforming creative ideas into detailed and engaging visual experiences for games and cinematic projects.",
+    "I believe in continuous learning, creative exploration, and improving my skills to deliver high-quality results.",
+  ],
+
+  /* About Me madhe khali disnari mahiti */
+  aboutFacts: [
+    { label: "Specialization", value: "Unreal Engine, 3D Environment Art" },
+    { label: "Based in", value: "Bengaluru, Karnataka" },
+    { label: "Languages", value: "English, Marathi, Hindi" },
   ],
 
   languages: ["English", "Marathi", "Hindi"],
@@ -38,12 +49,13 @@ const SITE = {
       title: "Game Designer",
       company: "AppsNDevices Pvt. Ltd.",
       location: "Bengaluru",
-      period: "1 Year",
+      period: "1 Year+",
       current: true,        // true = "Present" dakhavto; job sodlyavar false kara
       points: [
-        "Contributing to game design and development for interactive projects.",
-        "Working on gameplay flow, level design, UI elements, and Unreal Engine implementation.",
-        "Collaborating on visual quality, iteration, and performance optimization.",
+        "Designing gameplay mechanics, game flow, and level layouts.",
+        "Creating 3D assets, environments, materials, and lighting in Unreal Engine.",
+        "Implementing Blueprints, UI elements, and interactive systems.",
+        "Optimizing game performance and improving visual quality.",
       ],
     },
   ],
@@ -125,7 +137,7 @@ const SITE = {
     /* ---------- UNREAL ENGINE WORKS ---------- */
     {
       category: "unreal",
-      title: "Forest Cottage",
+      title: "Cinematic Environment",
       year: "",
       thumbnail: "assets/works/posters/forest-cottage.jpg",
       video: "assets/videos/forest-cottage.mp4",
@@ -134,12 +146,12 @@ const SITE = {
     },
     {
       category: "unreal",
-      title: "Cyber Lab",
+      title: "Car Chase",
       year: "",
-      thumbnail: "assets/works/posters/cyber-lab.jpg",
+      thumbnail: "assets/works/posters/car-chase.jpg",
       video: "assets/videos/cyber-lab.mp4",
       tools: ["Unreal Engine"],
-      description: "A sci-fi control room cinematic with holographic data screens and a character-driven shot sequence.",
+      description: "A cinematic chase sequence — from a sci-fi control room to a high-speed pursuit through city streets, with dynamic camera work and motion.",
     },
     {
       category: "unreal",
@@ -151,8 +163,20 @@ const SITE = {
       description: "An architectural campus environment staged for a Republic Day flag-hoisting scene, with daylight lighting and crowd.",
     },
 
-    /* ---------- AI GAMES ----------
-       Game add karayla khalcha block uncomment kara (suruvaticha // kadha):
+    /* ---------- AI GAMES ---------- */
+    {
+      category: "game",
+      title: "Horizon Rush",
+      year: "",
+      thumbnail: "assets/works/posters/horizon-rush.jpg",
+      video: "assets/videos/horizon-rush.mp4",           // gameplay video
+      playLink: "https://theartist007.itch.io/horizonrush", // "Play Game" button
+      password: "1234",                                      // itch.io password — card var disto
+      tools: [],
+      description: "The Alpine Odyssey — an endless runner across floating alpine islands. Dodge obstacles, collect coins and keys, and survive as the track gets faster.",
+    },
+
+    /* Navin game add karayla khalcha block uncomment kara:
     {
       category: "game",
       title: "Game Name",
